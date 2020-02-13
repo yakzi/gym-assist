@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GymAssist</string>
     <string name="login_string">Welcome to GymAssist \n Please log in to go further</string>
+    <string name="alt_logo">Logo image</string>
 </resources>
