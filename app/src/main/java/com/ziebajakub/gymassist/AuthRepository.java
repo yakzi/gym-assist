@@ -1,5 +1,6 @@
 package com.ziebajakub.gymassist;
 
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.AuthCredential;
@@ -22,13 +23,21 @@ class AuthRepository {
                     String name = firebaseUser.getDisplayName();
                     String email = firebaseUser.getEmail();
                     User user = new User(uid, name, email);
-                    user.isNew = isNewUser;
+                    user.setNew(isNewUser);
                     authenticatedUserMutableLiveData.setValue(user);
                 }
             } else {
-                //TODO MAKE ERROR HANDLING
+                authenticatedUserMutableLiveData.setValue(null);
             }
         });
         return authenticatedUserMutableLiveData;
+    }
+
+    public boolean isLoggedUser() {
+        return firebaseAuth.getCurrentUser() != null;
+    }
+
+    public void logout() {
+        firebaseAuth.signOut();
     }
 }

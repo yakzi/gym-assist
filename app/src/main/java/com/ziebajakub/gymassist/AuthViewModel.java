@@ -9,14 +9,27 @@ import com.google.firebase.auth.AuthCredential;
 
 public class AuthViewModel extends AndroidViewModel {
     private AuthRepository authRepository;
-    LiveData<User> authenticatedUserLiveData;
+    private LiveData<User> userLiveData;
 
     public AuthViewModel(Application application) {
         super(application);
         authRepository = new AuthRepository();
     }
 
+    LiveData<User> getUserLiveData(){
+        return userLiveData;
+    }
+
     void signInWithGoogle(AuthCredential googleAuthCredential) {
-        authenticatedUserLiveData = authRepository.firebaseSignInWithGoogle(googleAuthCredential);
+        userLiveData = authRepository.firebaseSignInWithGoogle(googleAuthCredential);
+    }
+
+    boolean isLoggedUser(){
+        return authRepository.isLoggedUser();
+    }
+
+    void logout(){
+        authRepository.logout();
+        userLiveData = null;
     }
 }
