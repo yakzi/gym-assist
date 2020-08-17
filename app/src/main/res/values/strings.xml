@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">GymAssist</string>
-    <string name="login_string">Welcome to GymAssist \n Please log in to go further</string>
+    <string name="login_string">Welcome to GymAssist!\nPlease log in to make your dreams come true ⭐</string>
     <string name="alt_logo">Logo image</string>
+    <string name="splash_string">Loading GymAssist…</string>
+    <string name="profile_email_default">Email</string>
+    <string name="profile_name_default">Name</string>
+    <string name="weight_history">Weight history</string>
+    <string name="logout">Logout</string>
+    <string name="profile_bottom_info_text">All personal data is provided by user\'s Google Account \n and cannot be changed within GymAssist</string>
+    <string name="profile_image">profile image</string>
 </resources>
