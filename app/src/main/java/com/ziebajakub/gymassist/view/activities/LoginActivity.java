@@ -1,4 +1,4 @@
-package com.ziebajakub.gymassist;
+package com.ziebajakub.gymassist.view.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -16,11 +16,13 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.ziebajakub.gymassist.R;
 import com.ziebajakub.gymassist.databinding.ActivityLoginBinding;
+import com.ziebajakub.gymassist.services.models.User;
+import com.ziebajakub.gymassist.view.interfaces.Constants;
+import com.ziebajakub.gymassist.viewmodels.AuthViewModel;
 
-import java.util.Objects;
-
-import static com.ziebajakub.gymassist.Constants.RC_SIGN_IN;
+import static com.ziebajakub.gymassist.view.interfaces.Constants.RC_SIGN_IN;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,29 +34,21 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-        initSignInButton();
+        setContentView(binding.getRoot());
+
         initAuthViewModel();
+        initSignInButton();
         initGoogleSignInClient();
-        isLoggedUser();
-    }
-
-    private void isLoggedUser() {
-        if(authViewModel.isLoggedUser()) {
-            Toast.makeText(this, "Zalogowany", Toast.LENGTH_SHORT).show();
-            //TODO GET USER FROM DATABASE
-            changeToMainView();
-        }
-    }
-
-    private void initSignInButton() {
-        binding.googleLoginButton.setOnClickListener(v -> signIn());
     }
 
     private void initAuthViewModel() {
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+    }
+
+    private void initSignInButton() {
+        binding.googleLoginButton.setOnClickListener(v -> signIn());
     }
 
     private void initGoogleSignInClient() {
@@ -67,15 +61,15 @@ public class LoginActivity extends AppCompatActivity {
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
     }
 
-    private void signIn() {
-        Intent signInIntent = googleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
-
     private void getGoogleAuthCredential(GoogleSignInAccount googleSignInAccount) {
         String googleTokenId = googleSignInAccount.getIdToken();
         AuthCredential googleAuthCredential = GoogleAuthProvider.getCredential(googleTokenId, null);
         signInWithGoogleAuthCredential(googleAuthCredential);
+    }
+
+    private void signIn() {
+        Intent signInIntent = googleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     private void signInWithGoogleAuthCredential(AuthCredential googleAuthCredential) {
@@ -83,21 +77,43 @@ public class LoginActivity extends AppCompatActivity {
         authViewModel.getUserLiveData().observe(this, authenticatedUser -> {
             if(authenticatedUser != null){
                 if (authenticatedUser.isNew()) {
-                    //TODO add user to firestore database
+                    addUserToDatabase(authenticatedUser);
                 } else {
-                    Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show();
+                    getUserFromDatabase(authenticatedUser.getUid());
                 }
-                changeToMainView();
             }
         });
     }
 
-    private void changeToMainView() {
+    private void addUserToDatabase(User userToAdd) {
+        authViewModel.addUserToDatabase(userToAdd);
+        authViewModel.getUserLiveData().observe(this, user -> {
+            if (user != null) {
+                changeToMainView(user);
+            } else {
+                Toast.makeText(this, "Error while uploading data", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getUserFromDatabase(String id) {
+        authViewModel.getUserFromDatabase(id);
+        authViewModel.getUserLiveData().observe(this, user -> {
+            if (user != null) {
+                changeToMainView(user);
+            } else {
+                Toast.makeText(this, "Error while fetching data from database", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void changeToMainView(User user) {
         Intent intent = new Intent(this, MainActivity.class);
-        //Bundle bundle = new Bundle();
-        //bundle.putSerializable(Constants.USER, user);
-        //intent.putExtras(bundle);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(Constants.USER, user);
+        intent.putExtras(bundle);
         startActivity(intent);
+        finish();
     }
 
     @Override

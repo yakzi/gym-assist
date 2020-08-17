@@ -1,15 +1,19 @@
-package com.ziebajakub.gymassist;
+package com.ziebajakub.gymassist.services.models;
 
 import com.google.firebase.firestore.Exclude;
 
 import java.io.Serializable;
 
 public class User implements Serializable {
+
     private String uid;
     private String name;
     private String email;
     @Exclude
     private boolean isNew, isCreated;
+
+    public User() {
+    }
 
     public User(String uid, String name, String email) {
         this.uid = uid;
