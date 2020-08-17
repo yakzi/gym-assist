@@ -10,7 +10,7 @@
         android:id="@+id/logo_image"
         android:layout_width="@dimen/logo_image_size"
         android:layout_height="@dimen/logo_image_size"
-        android:layout_marginTop="@dimen/margin_larger"
+        android:layout_marginTop="@dimen/logo_margin"
         android:contentDescription="@string/alt_logo"
         android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,10 +25,12 @@
         android:text="@string/login_string"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
+        android:paddingStart="@dimen/margin_normal"
+        android:paddingEnd="@dimen/margin_normal"
         android:textSize="@dimen/font_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_image" />
+        app:layout_constraintTop_toBottomOf="@+id/logo_image"/>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_login_button"
@@ -39,7 +41,8 @@
         app:buttonSize="wide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_text" />
+        app:layout_constraintTop_toBottomOf="@+id/login_text"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

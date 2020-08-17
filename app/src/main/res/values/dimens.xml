@@ -10,5 +10,8 @@
     <dimen name="font_size_normal">18sp</dimen>
     <dimen name="font_size_medium">24sp</dimen>
 
-    <dimen name="logo_image_size">300dp</dimen>
+    <dimen name="logo_image_size">200dp</dimen>
+    <dimen name="logo_margin">100dp</dimen>
+
+    <dimen name="button_width">164dp</dimen>
 </resources>
