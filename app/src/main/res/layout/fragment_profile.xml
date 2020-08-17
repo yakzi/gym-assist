@@ -43,7 +43,7 @@
 
     <Button
         android:id="@+id/profile_weight_button"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_medium"
         android:text="@string/weight_history"
@@ -55,7 +55,7 @@
 
     <Button
         android:id="@+id/profile_logout_button"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/margin_normal"
         android:text="@string/logout"
