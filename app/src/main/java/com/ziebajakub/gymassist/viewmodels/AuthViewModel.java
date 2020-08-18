@@ -10,6 +10,8 @@ import com.google.firebase.auth.AuthCredential;
 import com.ziebajakub.gymassist.services.models.User;
 import com.ziebajakub.gymassist.services.repositories.AuthRepository;
 
+import java.util.HashMap;
+
 public class AuthViewModel extends AndroidViewModel {
     private AuthRepository authRepository;
     private MutableLiveData<User> userLiveData;
@@ -47,5 +49,9 @@ public class AuthViewModel extends AndroidViewModel {
     public void logout(){
         userLiveData.setValue(null);
         authRepository.logout();
+    }
+
+    public void updateUserData(String uid, HashMap<String, Object> changes) {
+        authRepository.updateUser(uid, changes);
     }
 }

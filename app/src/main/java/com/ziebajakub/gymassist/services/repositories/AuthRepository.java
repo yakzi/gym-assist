@@ -13,6 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.ziebajakub.gymassist.services.models.User;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
 
+import java.util.HashMap;
 import java.util.Objects;
 
 public class AuthRepository {
@@ -87,5 +88,9 @@ public class AuthRepository {
 
     public String getLoggedUserId() {
         return firebaseAuth.getCurrentUser() != null ? firebaseAuth.getCurrentUser().getUid() : null;
+    }
+
+    public void updateUser(String uid, HashMap<String, Object> changes) {
+        usersRef.document(uid).update(changes);
     }
 }
