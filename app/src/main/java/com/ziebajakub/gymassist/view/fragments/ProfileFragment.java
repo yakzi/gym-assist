@@ -84,6 +84,8 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         switch (view.getId()) {
             case R.id.profile_logout_button:
                 authViewModel.logout();
+            case R.id.profile_weight_button:
+                getNavigation().changeFragment(this, WeightHistoryFragment.newInstance(user), true);
         }
     }
 
