@@ -3,12 +3,15 @@ package com.ziebajakub.gymassist.services.models;
 import com.google.firebase.firestore.Exclude;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User implements Serializable {
 
     private String uid;
     private String name;
     private String email;
+    private List<Weight> weightHistory;
     @Exclude
     private boolean isNew, isCreated;
 
@@ -19,6 +22,7 @@ public class User implements Serializable {
         this.uid = uid;
         this.name = name;
         this.email = email;
+        this.weightHistory = new ArrayList<>();
     }
 
     public String getUid() {
@@ -61,5 +65,9 @@ public class User implements Serializable {
 
     public void setCreated(boolean created) {
         isCreated = created;
+    }
+
+    public List<Weight> getWeightHistory() {
+        return weightHistory;
     }
 }
