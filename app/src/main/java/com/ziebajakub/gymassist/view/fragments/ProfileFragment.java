@@ -19,7 +19,7 @@ import com.ziebajakub.gymassist.services.models.User;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
 import com.ziebajakub.gymassist.viewmodels.AuthViewModel;
 
-public class ProfileFragment extends Fragment implements View.OnClickListener {
+public class ProfileFragment extends BaseFragment implements View.OnClickListener {
 
     private FragmentProfileBinding binding;
     private AuthViewModel authViewModel;
@@ -76,6 +76,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private void setListeners() {
         binding.profileLogoutButton.setOnClickListener(this);
+        binding.profileWeightButton.setOnClickListener(this);
     }
 
     @Override

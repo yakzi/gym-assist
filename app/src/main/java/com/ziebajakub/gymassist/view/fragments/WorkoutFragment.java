@@ -18,7 +18,7 @@ import com.ziebajakub.gymassist.view.interfaces.Constants;
 
 import java.util.Objects;
 
-public class WorkoutFragment extends Fragment {
+public class WorkoutFragment extends BaseFragment {
 
     private FragmentWorkoutBinding binding;
     private User user;
