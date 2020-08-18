@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.ziebajakub.gymassist.R;
@@ -14,9 +15,10 @@ import com.ziebajakub.gymassist.services.models.User;
 import com.ziebajakub.gymassist.view.fragments.ProfileFragment;
 import com.ziebajakub.gymassist.view.fragments.WorkoutFragment;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
+import com.ziebajakub.gymassist.view.interfaces.NavigationListener;
 import com.ziebajakub.gymassist.viewmodels.AuthViewModel;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationListener {
 
     private ActivityMainBinding binding;
     private AuthViewModel authViewModel;
@@ -78,5 +80,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public void changeFragment(Fragment previous, Fragment next, Boolean addToBackStack) {
+        if (previous.getView() != null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, next);
+            if (addToBackStack)
+                fragmentTransaction.addToBackStack(next.getClass().getName());
+            fragmentTransaction.commit();
+        }
     }
 }
