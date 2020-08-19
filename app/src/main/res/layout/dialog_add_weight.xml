@@ -43,7 +43,7 @@
             android:maxLength="5"
             android:textAlignment="center"
             android:textCursorDrawable="@null"
-            android:textSize="@dimen/font_size_small" />
+            android:textSize="@dimen/font_size_normal" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
