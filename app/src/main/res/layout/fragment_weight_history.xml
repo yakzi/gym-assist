@@ -25,14 +25,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/weight_history_list"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:divider="@color/colorGray"
-            android:dividerHeight="4dp"
-            android:foregroundGravity="center"
-            android:layoutDirection="rtl"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
