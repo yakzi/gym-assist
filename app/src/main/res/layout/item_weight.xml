@@ -13,16 +13,16 @@
         android:id="@+id/weight_item_value"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/baloopaaji"
+        android:fontFamily="@font/sourcesanspro_regular"
         android:textSize="@dimen/font_size_medium"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/colorBlack"
         android:layout_weight="7"/>
 
     <TextView
         android:id="@+id/weight_item_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/baloopaaji"
+        android:fontFamily="@font/sourcesanspro_regular"
         android:textSize="@dimen/font_size_normal"
         android:textColor="@color/colorPrimary"
         android:textAlignment="textEnd"

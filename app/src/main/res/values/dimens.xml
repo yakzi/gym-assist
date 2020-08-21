@@ -6,16 +6,19 @@
     <dimen name="margin_medium">24dp</dimen>
     <dimen name="margin_large">48dp</dimen>
     <dimen name="margin_larger">52dp</dimen>
+    <dimen name="margin_logo_top">64dp</dimen>
 
     <dimen name="font_size_small">14sp</dimen>
     <dimen name="font_size_normal">18sp</dimen>
     <dimen name="font_size_medium">24sp</dimen>
+    <dimen name="font_size_big">28sp</dimen>
     <dimen name="font_size_large">32sp</dimen>
 
-    <dimen name="logo_image_size">200dp</dimen>
+    <dimen name="logo_image_size">180dp</dimen>
+    <dimen name="logo_image_size_splash">200dp</dimen>
     <dimen name="logo_margin">100dp</dimen>
 
-    <dimen name="button_width">164dp</dimen>
+    <dimen name="button_width">200dp</dimen>
 
     <dimen name="dialog_input_width">250dp</dimen>
     <dimen name="dialog_button_width">90dp</dimen>

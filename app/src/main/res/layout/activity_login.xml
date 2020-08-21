@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorWhite"
     tools:context=".view.activities.LoginActivity">
 
     <ImageView
@@ -18,31 +19,59 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/login_welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/merriweather_regular"
+        android:text="@string/login_welcome_string"
+        android:textAlignment="center"
+        android:textColor="@color/colorBlack"
+        android:textSize="@dimen/font_size_big"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_image"/>
+
+    <TextView
         android:id="@+id/login_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/baloopaaji"
+        android:fontFamily="@font/merriweather_regular"
         android:text="@string/login_string"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryDark"
         android:paddingStart="@dimen/margin_normal"
         android:paddingEnd="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small"
         android:textSize="@dimen/font_size_medium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/logo_image"/>
+        app:layout_constraintTop_toBottomOf="@+id/login_welcome_text"/>
+
+    <TextView
+        android:id="@+id/login_text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/merriweather_regular"
+        android:text="@string/login_string_second"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:paddingStart="@dimen/margin_normal"
+        android:paddingEnd="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textSize="@dimen/font_size_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_text"/>
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/google_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_larger"
-        android:fontFamily="@font/baloopaaji"
+        android:layout_marginTop="@dimen/margin_large"
         app:buttonSize="wide"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_text"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/login_text_2"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

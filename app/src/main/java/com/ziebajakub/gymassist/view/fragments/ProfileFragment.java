@@ -1,5 +1,6 @@
 package com.ziebajakub.gymassist.view.fragments;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -55,9 +56,11 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         return binding.getRoot();
     }
 
+    @SuppressLint("SetTextI18n")
     private void initProfileInfo() {
         binding.profileName.setText(user.getName());
-        binding.profileEmail.setText(user.getEmail());
+        double lastWeight = user.getWeightHistory().get(user.getWeightHistory().size() - 1).getValue();
+        binding.profileWeightValue.setText(Double.toString(lastWeight));
         if (getContext() != null && FirebaseAuth.getInstance().getCurrentUser() != null) {
             Uri profileImage = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
             Glide.with(getContext())
@@ -84,6 +87,7 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
         switch (view.getId()) {
             case R.id.profile_logout_button:
                 authViewModel.logout();
+                break;
             case R.id.profile_weight_button:
                 getNavigation().changeFragment(this, WeightHistoryFragment.newInstance(user), true);
         }

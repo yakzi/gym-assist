@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">GymAssist</string>
-    <string name="login_string">Welcome to GymAssist!\nPlease log in to make your dreams come true ⭐</string>
+    <string name="login_string">Welcome to GymAssist!\nPlease <u>log in</u></string>
+    <string name="login_string_second">to make your dreams come true ⭐</string>
+    <string name="login_welcome_string">Hello fighter! 💪</string>
     <string name="alt_logo">Logo image</string>
     <string name="splash_string">Loading GymAssist…</string>
     <string name="profile_email_default">Email</string>
@@ -15,4 +17,5 @@
     <string name="dialog_add_weight_desc">Enter your actual weight.</string>
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_button_add">Add</string>
+    <string name="profile_weight">"Your current weight: "</string>
 </resources>

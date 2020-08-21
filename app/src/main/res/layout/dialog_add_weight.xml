@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -10,7 +11,7 @@
         android:id="@+id/dialog_add_weight_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/baloopaaji"
+        android:fontFamily="@font/merriweather_regular"
         android:text="@string/dialog_add_weight_title"
         android:textColor="@color/colorBlack"
         android:textSize="@dimen/font_size_medium" />
@@ -19,11 +20,12 @@
         android:id="@+id/dialog_add_weight_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/baloopaaji"
+        android:fontFamily="@font/sourcesanspro_regular"
         android:text="@string/dialog_add_weight_desc"
         android:textAlignment="textStart"
         android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/font_size_normal" />
+        android:textSize="@dimen/font_size_normal"
+        android:layout_below="@+id/dialog_add_weight_title"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/dialog_add_weight_input_layout"
@@ -32,15 +34,16 @@
         app:boxStrokeColor="@color/colorPrimary"
         app:errorEnabled="false"
         app:errorIconDrawable="@null"
-        app:hintEnabled="false">
+        app:hintEnabled="false"
+        android:layout_below="@+id/dialog_add_weight_desc">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/dialog_add_weight_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/baloopaaji"
+            android:fontFamily="@font/sourcesanspro_regular"
             android:inputType="numberDecimal"
-            android:maxLength="5"
+            android:maxLength="6"
             android:textAlignment="center"
             android:textCursorDrawable="@null"
             android:textSize="@dimen/font_size_normal" />
@@ -50,16 +53,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="end"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_below="@+id/dialog_add_weight_input_layout">
 
         <Button
             android:id="@+id/dialog_add_weight_button_cancel"
             android:layout_width="@dimen/dialog_button_width"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_small"
+            android:layout_marginEnd="@dimen/margin_smaller"
             android:text="@string/dialog_button_cancel"
             android:textColor="@color/colorWhite"
-            android:theme="@style/TextButton" />
+            android:theme="@style/TextButton"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/dialog_add_weight_button_add"
@@ -67,8 +72,9 @@
             android:layout_width="@dimen/dialog_button_width"
             android:layout_height="wrap_content"
             android:text="@string/dialog_button_add"
-            android:textColor="@color/colorWhite"/>
+            android:textColor="@color/colorWhite"
+            tools:ignore="ButtonStyle" />
 
     </LinearLayout>
 
-</LinearLayout>
+</RelativeLayout>

@@ -5,4 +5,6 @@ public interface Constants {
     String USER = "user";
     String USERS = "users";
     String DB_WEIGHTS = "weightHistory";
+    int MAX_WEIGHT_LENGTH = 5;
+    int MAX_WEIGHT = 200;
 }
