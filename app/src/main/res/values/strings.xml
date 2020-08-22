@@ -18,4 +18,9 @@
     <string name="dialog_button_cancel">Cancel</string>
     <string name="dialog_button_add">Add</string>
     <string name="profile_weight">"Your current weight: "</string>
+    <string name="previous_day">Previous</string>
+    <string name="next_day">Next</string>
+    <string name="add_exercise">Add exercise</string>
+    <string name="workout_day_name_default">Day of month</string>
+    <string name="workout_day_date_default">01.01.2020</string>
 </resources>

@@ -12,4 +12,8 @@
         <item name="android:padding">@dimen/margin_normal</item>
     </style>
 
+    <style name="TextButtonDarker" parent="TextButton">
+        <item name="backgroundTint">@color/colorAccentDark</item>
+    </style>
+
 </resources>
