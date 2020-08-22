@@ -20,7 +20,7 @@ import com.ziebajakub.gymassist.R;
 import com.ziebajakub.gymassist.databinding.DialogAddWeightBinding;
 import com.ziebajakub.gymassist.databinding.FragmentWeightHistoryBinding;
 import com.ziebajakub.gymassist.services.models.User;
-import com.ziebajakub.gymassist.services.models.Weight;
+import com.ziebajakub.gymassist.services.models.History;
 import com.ziebajakub.gymassist.view.adapters.WeightAdapter;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
 import com.ziebajakub.gymassist.viewmodels.AuthViewModel;
@@ -88,7 +88,7 @@ public class WeightHistoryFragment extends BaseFragment implements View.OnClickL
     private void initList() {
         if (user != null && getContext() != null) {
             binding.weightHistoryList.setLayoutManager(new LinearLayoutManager(getContext()));
-            List<Weight> weights = new ArrayList<>(user.getWeightHistory());
+            List<History> weights = new ArrayList<>(user.getWeights());
             adapter = new WeightAdapter(getContext(), weights);
             binding.weightHistoryList.setAdapter(adapter);
         }
@@ -130,10 +130,10 @@ public class WeightHistoryFragment extends BaseFragment implements View.OnClickL
 
     private void addWeight(String weight) {
         binding.weightHistoryList.scrollToPosition(0);
-        Weight newWeight = new Weight(Double.parseDouble(weight), Calendar.getInstance().getTimeInMillis());
-        user.getWeightHistory().add(newWeight);
+        History newWeight = new History(Double.parseDouble(weight), Calendar.getInstance().getTimeInMillis());
+        user.getWeights().add(newWeight);
         authViewModel.updateUserData(user.getUid(), new HashMap<String, Object>() {{
-            put(Constants.DB_WEIGHTS, user.getWeightHistory());
+            put(Constants.DB_WEIGHTS, user.getWeights());
         }});
         adapter.add(newWeight);
     }

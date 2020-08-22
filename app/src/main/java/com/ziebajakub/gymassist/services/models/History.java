@@ -2,15 +2,15 @@ package com.ziebajakub.gymassist.services.models;
 
 import java.io.Serializable;
 
-public class Weight implements Serializable {
+public class History implements Serializable {
 
     private double value;
     private long date;
 
-    public Weight() {
+    public History() {
     }
 
-    public Weight(double value, long date) {
+    public History(double value, long date) {
         this.value = value;
         this.date = date;
     }

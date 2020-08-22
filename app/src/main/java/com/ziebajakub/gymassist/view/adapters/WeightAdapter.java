@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ziebajakub.gymassist.databinding.ItemWeightBinding;
-import com.ziebajakub.gymassist.services.models.Weight;
+import com.ziebajakub.gymassist.services.models.History;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,9 +19,9 @@ import java.util.List;
 public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightHolder> {
 
     private Context context;
-    private List<Weight> weights;
+    private List<History> weights;
 
-    public WeightAdapter(Context context, List<Weight> weights) {
+    public WeightAdapter(Context context, List<History> weights) {
         this.context = context;
         this.weights = weights;
         Collections.reverse(this.weights);
@@ -37,7 +37,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightHold
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull WeightHolder holder, int position) {
-        final Weight weight = weights.get(position);
+        final History weight = weights.get(position);
         holder.binding.weightItemValue.setText(weight.getValue() + "");
         holder.binding.weightItemDate.setText(getTimeFromMillis(weight.getDate()));
     }
@@ -50,7 +50,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightHold
         return format.format(date.getTime());
     }
 
-    public void add(Weight weight) {
+    public void add(History weight) {
         weights.add(0, weight);
         notifyItemInserted(0);
         notifyItemRangeChanged(0, weights.size());

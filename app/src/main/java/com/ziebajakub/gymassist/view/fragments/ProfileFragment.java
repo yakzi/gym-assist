@@ -59,8 +59,10 @@ public class ProfileFragment extends BaseFragment implements View.OnClickListene
     @SuppressLint("SetTextI18n")
     private void initProfileInfo() {
         binding.profileName.setText(user.getName());
-        double lastWeight = user.getWeightHistory().get(user.getWeightHistory().size() - 1).getValue();
-        binding.profileWeightValue.setText(Double.toString(lastWeight));
+        String lastWeight = user.getWeights().size() > 0
+                ? String.valueOf(user.getWeights().get(user.getWeights().size() - 1).getValue())
+                : "Not set";
+        binding.profileWeightValue.setText(lastWeight);
         if (getContext() != null && FirebaseAuth.getInstance().getCurrentUser() != null) {
             Uri profileImage = FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl();
             Glide.with(getContext())
