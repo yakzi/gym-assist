@@ -12,17 +12,23 @@ import androidx.lifecycle.ViewModelProvider;
 import com.ziebajakub.gymassist.R;
 import com.ziebajakub.gymassist.databinding.ActivityMainBinding;
 import com.ziebajakub.gymassist.services.models.User;
+import com.ziebajakub.gymassist.services.models.Workout;
 import com.ziebajakub.gymassist.view.fragments.ProfileFragment;
 import com.ziebajakub.gymassist.view.fragments.WorkoutFragment;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
 import com.ziebajakub.gymassist.view.interfaces.NavigationListener;
 import com.ziebajakub.gymassist.viewmodels.AuthViewModel;
+import com.ziebajakub.gymassist.viewmodels.WorkoutViewModel;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements NavigationListener {
 
     private ActivityMainBinding binding;
     private AuthViewModel authViewModel;
+    private WorkoutViewModel workoutViewModel;
     private User user;
+    private List<Workout> workouts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,24 +37,28 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        getUserFromBundle();
-        initAuthViewModel();
+        getBundles();
+        initViewModels();
         observeUser();
+        observeWorkouts();
         setListeners();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                new WorkoutFragment()).commit();
+                WorkoutFragment.newInstance(user, workouts)).commit();
 
     }
 
-    private void getUserFromBundle() {
+    @SuppressWarnings("unchecked")
+    private void getBundles() {
         if (getIntent().getExtras() != null) {
             user = (User) getIntent().getExtras().getSerializable(Constants.USER);
+            workouts = (List<Workout>) getIntent().getExtras().getSerializable(Constants.WORKOUTS);
         }
     }
 
-    private void initAuthViewModel() {
+    private void initViewModels() {
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+        workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
     }
 
     private void setListeners() {
@@ -56,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
             Fragment selectedFragment = new Fragment();
             switch (item.getItemId()) {
                 case R.id.nav_workout:
-                    selectedFragment = WorkoutFragment.newInstance(user);
+                    selectedFragment = WorkoutFragment.newInstance(user, workouts);
                     break;
                 case R.id.nav_profile:
                     selectedFragment = ProfileFragment.newInstance(user);
@@ -71,6 +81,15 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
         authViewModel.getUserLiveData().observe(this, user -> {
             if (user == null) {
                 Toast.makeText(this, "Logged out", Toast.LENGTH_SHORT).show();
+                changeToLoginView();
+            }
+        });
+    }
+
+    private void observeWorkouts() {
+        workoutViewModel.getWorkoutsLiveData().observe(this, workoutsData -> {
+            if (workoutsData == null) {
+                Toast.makeText(this, "Error while loading workouts from database!", Toast.LENGTH_SHORT).show();
                 changeToLoginView();
             }
         });

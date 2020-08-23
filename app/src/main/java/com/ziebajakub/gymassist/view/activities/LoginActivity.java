@@ -1,12 +1,11 @@
 package com.ziebajakub.gymassist.view.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -19,8 +18,11 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.ziebajakub.gymassist.R;
 import com.ziebajakub.gymassist.databinding.ActivityLoginBinding;
 import com.ziebajakub.gymassist.services.models.User;
+import com.ziebajakub.gymassist.services.models.Workout;
+import com.ziebajakub.gymassist.view.enums.DayOfWeek;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
 import com.ziebajakub.gymassist.viewmodels.AuthViewModel;
+import com.ziebajakub.gymassist.viewmodels.WorkoutViewModel;
 
 import static com.ziebajakub.gymassist.view.interfaces.Constants.RC_SIGN_IN;
 
@@ -29,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private GoogleSignInClient googleSignInClient;
     private AuthViewModel authViewModel;
+    private WorkoutViewModel workoutViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,13 +41,14 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        initAuthViewModel();
+        initViewModels();
         initSignInButton();
         initGoogleSignInClient();
     }
 
-    private void initAuthViewModel() {
+    private void initViewModels() {
         authViewModel = new ViewModelProvider(this).get(AuthViewModel.class);
+        workoutViewModel = new ViewModelProvider(this).get(WorkoutViewModel.class);
     }
 
     private void initSignInButton() {
@@ -75,8 +79,9 @@ public class LoginActivity extends AppCompatActivity {
     private void signInWithGoogleAuthCredential(AuthCredential googleAuthCredential) {
         authViewModel.signInWithGoogle(googleAuthCredential);
         authViewModel.getUserLiveData().observe(this, authenticatedUser -> {
-            if(authenticatedUser != null){
+            if (authenticatedUser != null) {
                 if (authenticatedUser.isNew()) {
+                    initDefaultWorkouts(authenticatedUser);
                     addUserToDatabase(authenticatedUser);
                 } else {
                     getUserFromDatabase(authenticatedUser.getUid());
@@ -96,6 +101,14 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void initDefaultWorkouts(User user) {
+        for (int i = 0; i < 7; i++) {
+            String id = workoutViewModel.generateId();
+            workoutViewModel.addWorkout(new Workout(id, DayOfWeek.values()[i]));
+            user.addWorkout(id);
+        }
+    }
+
     private void getUserFromDatabase(String id) {
         authViewModel.getUserFromDatabase(id);
         authViewModel.getUserLiveData().observe(this, user -> {
@@ -108,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void changeToMainView(User user) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, SplashActivity.class);
         Bundle bundle = new Bundle();
         bundle.putSerializable(Constants.USER, user);
         intent.putExtras(bundle);
