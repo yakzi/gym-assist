@@ -12,7 +12,7 @@ public class User implements Serializable {
     private String name;
     private String email;
     private List<History> weights;
-    private List<Workout> workouts;
+    private List<String> workouts;
     @Exclude
     private boolean isNew, isCreated;
 
@@ -73,7 +73,11 @@ public class User implements Serializable {
         return weights;
     }
 
-    public List<Workout> getWorkouts() {
+    public List<String> getWorkouts() {
         return workouts;
+    }
+
+    public void addWorkout(String id) {
+        this.workouts.add(id);
     }
 }
