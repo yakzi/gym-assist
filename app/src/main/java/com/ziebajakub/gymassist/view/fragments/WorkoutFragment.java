@@ -55,7 +55,25 @@ public class WorkoutFragment extends BaseFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentWorkoutBinding.inflate(inflater, container, false);
+
+        initViewModels();
+        initView();
+
         return binding.getRoot();
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    private void initView() {
+        binding.workoutDayDate.setText(new SimpleDateFormat("dd.MM.YYYY")
+                .format(Calendar.getInstance().getTime()));
+        currentWorkout = workoutList.get(0);
+        binding.workoutDayName.setText(currentWorkout.getDay().getName());
+    }
+
+    private void initViewModels() {
+        if (getActivity() != null) {
+            workoutViewModel = new ViewModelProvider(getActivity()).get(WorkoutViewModel.class);
+        }
     }
 
     @Override
