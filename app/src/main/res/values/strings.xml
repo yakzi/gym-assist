@@ -23,4 +23,9 @@
     <string name="add_exercise">Add exercise</string>
     <string name="workout_day_name_default">Day of month</string>
     <string name="workout_day_date_default">01.01.2020</string>
+    <string name="dialog_add_exercise_title">Add exercise</string>
+    <string name="dialog_add_exercise_name_hint">Name</string>
+    <string name="dialog_add_exercise_sets_hint">Sets</string>
+    <string name="dialog_add_exercise_reps_hint">Reps</string>
+    <string name="dialog_add_exercise_weight_hint">Weight</string>
 </resources>

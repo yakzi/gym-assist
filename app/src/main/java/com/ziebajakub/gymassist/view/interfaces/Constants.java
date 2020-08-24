@@ -11,4 +11,6 @@ public interface Constants {
 
     int MAX_WEIGHT_LENGTH = 5;
     int MAX_WEIGHT = 200;
+
+    String ERROR_INPUT = "Error: Invalid inputs.";
 }
