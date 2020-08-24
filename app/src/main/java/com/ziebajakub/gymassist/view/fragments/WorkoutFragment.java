@@ -129,7 +129,7 @@ public class WorkoutFragment extends BaseFragment implements View.OnClickListene
         binding.workoutDayDate.setText(new SimpleDateFormat("dd.MM.YYYY").format(now.getTime()));
         setCurrentWorkout(now.get(Calendar.DAY_OF_WEEK) - 2);
         binding.workoutDayExercisesList.setLayoutManager(new LinearLayoutManager(getContext()));
-        adapter = new ExerciseAdapter(getContext(), currentWorkout.getExercises());
+        adapter = new ExerciseAdapter(getContext(), currentWorkout.getExercisesData());
         binding.workoutDayExercisesList.setAdapter(adapter);
     }
 

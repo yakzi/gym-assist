@@ -2,6 +2,7 @@ package com.ziebajakub.gymassist.services.models;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.firestore.Exclude;
 import com.ziebajakub.gymassist.view.enums.DayOfWeek;
 
 import java.io.Serializable;
@@ -12,7 +13,10 @@ public class Workout implements Serializable, Comparable<Workout> {
 
     private String id;
     private DayOfWeek day;
-    private List<Exercise> exercises;
+    private List<String> exercises;
+
+    @Exclude
+    private List<Exercise> exercisesData;
 
     public Workout() {
     }
@@ -31,12 +35,22 @@ public class Workout implements Serializable, Comparable<Workout> {
         return day;
     }
 
-    public List<Exercise> getExercises() {
+    public List<String> getExercises() {
         return exercises;
     }
 
-    public void addExercise(Exercise exercise) {
-        this.exercises.add(exercise);
+    public void addExercise(String id) {
+        this.exercises.add(id);
+    }
+
+    @Exclude
+    public void addExercisesData(List<Exercise> exercises) {
+        this.exercisesData = exercises;
+    }
+
+    @Exclude
+    public List<Exercise> getExercisesData() {
+        return this.exercisesData;
     }
 
     @Override
