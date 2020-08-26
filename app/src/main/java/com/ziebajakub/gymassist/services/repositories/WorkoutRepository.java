@@ -12,6 +12,7 @@ import com.ziebajakub.gymassist.services.models.Workout;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class WorkoutRepository {
@@ -70,4 +71,7 @@ public class WorkoutRepository {
         return workoutsData;
     }
 
+    public void addExercise(String id, HashMap<String, Object> changes) {
+        workoutsRef.document(id).update(changes);
+    }
 }

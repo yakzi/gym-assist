@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.ziebajakub.gymassist.services.models.Workout;
 import com.ziebajakub.gymassist.services.repositories.WorkoutRepository;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class WorkoutViewModel extends AndroidViewModel {
@@ -45,5 +46,9 @@ public class WorkoutViewModel extends AndroidViewModel {
 
     public void getWorkouts(List<String> ids) {
         workoutsLiveData = workoutRepository.getWorkouts(ids);
+    }
+
+    public void addExercise(String id, HashMap<String, Object> changes) {
+        workoutRepository.addExercise(id, changes);
     }
 }
