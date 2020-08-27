@@ -146,9 +146,11 @@ public class WorkoutFragment extends BaseFragment implements View.OnClickListene
     private void addExerciseToWorkout(Exercise exercise) {
         currentWorkout.getExercises().add(exercise.getId());
         currentWorkout.getExercisesData().add(exercise);
+        binding.workoutDayExercisesList.scrollToPosition(currentWorkout.getExercises().size() - 1);
         workoutViewModel.addExercise(currentWorkout.getId(), new HashMap<String, Object>() {{
             put(Constants.DB_EXERCISES, currentWorkout.getExercises());
         }});
+        adapter.notifyDataSetChanged();
     }
 
     private Exercise createExercise(String name, String rep, String set, String weight) {
@@ -180,6 +182,9 @@ public class WorkoutFragment extends BaseFragment implements View.OnClickListene
         binding.workoutDayName.setText(currentWorkout.getDay().getName());
         adapter = new ExerciseAdapter(getContext(), currentWorkout.getExercisesData());
         binding.workoutDayExercisesList.setAdapter(adapter);
+        adapter.setOnItemClickListener((object, position, view) ->
+                Toast.makeText(getContext(), "clicked:" + ((Exercise) object).getName(), Toast.LENGTH_SHORT).show()
+        );
     }
 
     @Override
