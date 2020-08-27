@@ -46,4 +46,16 @@ public class Exercise implements Serializable {
     public List<History> getWeights() {
         return weights;
     }
+
+    public History getNewestRep() {
+        return reps.size() > 0 ? reps.get(reps.size() - 1) : null;
+    }
+
+    public History getNewestSet() {
+        return sets.size() > 0 ? sets.get(sets.size() - 1) : null;
+    }
+
+    public History getNewestWeight() {
+        return weights.size() > 0 ? weights.get(weights.size() - 1) : null;
+    }
 }
