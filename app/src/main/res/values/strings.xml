@@ -28,4 +28,7 @@
     <string name="dialog_add_exercise_sets_hint">Sets</string>
     <string name="dialog_add_exercise_reps_hint">Reps</string>
     <string name="dialog_add_exercise_weight_hint">Weight</string>
+    <string name="exercise_item_sets">Sets:</string>
+    <string name="exercise_item_reps">Reps:</string>
+    <string name="exercise_item_weight">Weight:</string>
 </resources>

@@ -23,4 +23,7 @@
 
     <dimen name="dialog_input_width">250dp</dimen>
     <dimen name="dialog_button_width">90dp</dimen>
+
+    <dimen name="cardview_elevation">8dp</dimen>
+    <dimen name="cardview_radius">8dp</dimen>
 </resources>
