@@ -16,4 +16,8 @@
         <item name="backgroundTint">@color/colorAccentDark</item>
     </style>
 
+    <style name="TextButtonDelete" parent="TextButton">
+        <item name="backgroundTint">@color/colorLightRed</item>
+    </style>
+
 </resources>

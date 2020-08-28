@@ -31,4 +31,6 @@
     <string name="exercise_item_sets">Sets:</string>
     <string name="exercise_item_reps">Reps:</string>
     <string name="exercise_item_weight">Weight:</string>
+    <string name="delete">Delete</string>
+    <string name="add">Add</string>
 </resources>
