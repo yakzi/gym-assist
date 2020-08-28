@@ -1,6 +1,10 @@
 package com.ziebajakub.gymassist.services.models;
 
+import android.annotation.SuppressLint;
+
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class History implements Serializable {
 
@@ -21,5 +25,13 @@ public class History implements Serializable {
 
     public long getDate() {
         return date;
+    }
+
+    @SuppressLint("SimpleDateFormat")
+    public String getDateString() {
+        Calendar date = Calendar.getInstance();
+        date.setTimeInMillis(this.date);
+        SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY");
+        return format.format(date.getTime());
     }
 }

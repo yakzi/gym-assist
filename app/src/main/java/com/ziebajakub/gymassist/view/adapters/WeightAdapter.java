@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ziebajakub.gymassist.databinding.ItemWeightBinding;
 import com.ziebajakub.gymassist.services.models.History;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,15 +37,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightHold
     public void onBindViewHolder(@NonNull WeightHolder holder, int position) {
         final History weight = weights.get(position);
         holder.binding.weightItemValue.setText(weight.getValue() + "");
-        holder.binding.weightItemDate.setText(getTimeFromMillis(weight.getDate()));
-    }
-
-    @SuppressLint("SimpleDateFormat")
-    private String getTimeFromMillis(long millis) {
-        Calendar date = Calendar.getInstance();
-        date.setTimeInMillis(millis);
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY");
-        return format.format(date.getTime());
+        holder.binding.weightItemDate.setText(weight.getDateString());
     }
 
     public void add(History weight) {
@@ -63,6 +53,7 @@ public class WeightAdapter extends RecyclerView.Adapter<WeightAdapter.WeightHold
 
     static class WeightHolder extends RecyclerView.ViewHolder {
         private ItemWeightBinding binding;
+
         WeightHolder(ItemWeightBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
