@@ -105,10 +105,17 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
     public void changeFragment(Fragment previous, Fragment next, Boolean addToBackStack) {
         if (previous.getView() != null) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, next);
+            fragmentTransaction.setCustomAnimations(R.anim.enter_anim, R.anim.exit_anim,
+                    R.anim.pop_enter_anim, R.anim.pop_exit_anim);
+            fragmentTransaction.add(R.id.fragment_container, next);
             if (addToBackStack)
                 fragmentTransaction.addToBackStack(next.getClass().getName());
             fragmentTransaction.commit();
         }
+    }
+
+    @Override
+    public void back() {
+        getSupportFragmentManager().popBackStack();
     }
 }
