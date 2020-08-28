@@ -10,6 +10,7 @@ public interface Constants {
     String DB_EXERCISES = "exercises";
     String WORKOUTS = "workouts";
     String EXERCISES = "exercises";
+    String EXERCISE = "exercise";
 
     int MAX_WEIGHT_LENGTH = 5;
     int MAX_WEIGHT = 200;
