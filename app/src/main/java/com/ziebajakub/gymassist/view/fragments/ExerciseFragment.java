@@ -13,35 +13,47 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.ziebajakub.gymassist.R;
 import com.ziebajakub.gymassist.databinding.FragmentExerciseBinding;
 import com.ziebajakub.gymassist.services.models.Exercise;
-import com.ziebajakub.gymassist.view.adapters.ExerciseAdapter;
+import com.ziebajakub.gymassist.services.models.Workout;
 import com.ziebajakub.gymassist.view.adapters.HistoryAdapter;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
 import com.ziebajakub.gymassist.viewmodels.ExerciseViewModel;
 import com.ziebajakub.gymassist.viewmodels.WorkoutViewModel;
 
+import java.io.Serializable;
+import java.util.HashMap;
+import java.util.List;
+
 public class ExerciseFragment extends BaseFragment implements View.OnClickListener {
 
     private FragmentExerciseBinding binding;
     private ExerciseViewModel exerciseViewModel;
+    private WorkoutViewModel workoutViewModel;
+    private List<Workout> workouts;
     private Exercise exercise;
+    private Workout workout;
     private HistoryAdapter adapter;
 
     public ExerciseFragment() {
     }
 
-    public static ExerciseFragment newInstance(Exercise exercise) {
+    public static ExerciseFragment newInstance(Exercise exercise, Workout workout, List<Workout> workouts) {
         ExerciseFragment fragment = new ExerciseFragment();
         Bundle args = new Bundle();
         args.putSerializable(Constants.EXERCISE, exercise);
+        args.putSerializable(Constants.WORKOUT, workout);
+        args.putSerializable(Constants.WORKOUTS, (Serializable) workouts);
         fragment.setArguments(args);
         return fragment;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             exercise = (Exercise) getArguments().getSerializable(Constants.EXERCISE);
+            workout = (Workout) getArguments().getSerializable(Constants.WORKOUT);
+            workouts = (List<Workout>) getArguments().getSerializable(Constants.WORKOUTS);
         }
     }
 

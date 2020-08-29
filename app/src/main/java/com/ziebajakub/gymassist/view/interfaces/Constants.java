@@ -9,6 +9,7 @@ public interface Constants {
     String DB_WORKOUTS = "workouts";
     String DB_EXERCISES = "exercises";
     String WORKOUTS = "workouts";
+    String WORKOUT = "workout";
     String EXERCISES = "exercises";
     String EXERCISE = "exercise";
 

@@ -183,7 +183,8 @@ public class WorkoutFragment extends BaseFragment implements View.OnClickListene
         adapter = new ExerciseAdapter(getContext(), currentWorkout.getExercisesData());
         binding.workoutDayExercisesList.setAdapter(adapter);
         adapter.setOnItemClickListener((object, position, view) ->
-                getNavigation().changeFragment(this, ExerciseFragment.newInstance((Exercise) object), true)
+                getNavigation().changeFragment(this,
+                        ExerciseFragment.newInstance((Exercise) object, currentWorkout, workoutList), true)
         );
     }
 
