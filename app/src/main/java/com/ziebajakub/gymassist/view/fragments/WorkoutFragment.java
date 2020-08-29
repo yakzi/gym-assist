@@ -147,7 +147,7 @@ public class WorkoutFragment extends BaseFragment implements View.OnClickListene
         currentWorkout.getExercises().add(exercise.getId());
         currentWorkout.getExercisesData().add(exercise);
         binding.workoutDayExercisesList.scrollToPosition(currentWorkout.getExercises().size() - 1);
-        workoutViewModel.addExercise(currentWorkout.getId(), new HashMap<String, Object>() {{
+        workoutViewModel.updateExercise(currentWorkout.getId(), new HashMap<String, Object>() {{
             put(Constants.DB_EXERCISES, currentWorkout.getExercises());
         }});
         adapter.notifyDataSetChanged();

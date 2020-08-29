@@ -48,7 +48,7 @@ public class WorkoutViewModel extends AndroidViewModel {
         workoutsLiveData = workoutRepository.getWorkouts(ids);
     }
 
-    public void addExercise(String id, HashMap<String, Object> changes) {
-        workoutRepository.addExercise(id, changes);
+    public void updateExercise(String id, HashMap<String, Object> changes) {
+        workoutRepository.updateExercise(id, changes);
     }
 }

@@ -71,7 +71,7 @@ public class WorkoutRepository {
         return workoutsData;
     }
 
-    public void addExercise(String id, HashMap<String, Object> changes) {
+    public void updateExercise(String id, HashMap<String, Object> changes) {
         workoutsRef.document(id).update(changes);
     }
 }
