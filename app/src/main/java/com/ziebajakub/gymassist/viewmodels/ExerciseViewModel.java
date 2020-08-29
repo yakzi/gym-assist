@@ -46,4 +46,8 @@ public class ExerciseViewModel extends AndroidViewModel {
     public void getExercises(List<String> ids) {
         exercisesLiveData = exerciseRepository.getExercises(ids);
     }
+
+    public void removeExercise(String id) {
+        exerciseRepository.removeExercise(id);
+    }
 }

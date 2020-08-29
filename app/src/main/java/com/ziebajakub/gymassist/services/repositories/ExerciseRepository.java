@@ -70,4 +70,7 @@ public class ExerciseRepository {
         return exercisesData;
     }
 
+    public void removeExercise(String id) {
+        exercisesRef.document(id).delete();
+    }
 }
