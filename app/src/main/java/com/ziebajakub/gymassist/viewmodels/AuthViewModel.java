@@ -51,7 +51,8 @@ public class AuthViewModel extends AndroidViewModel {
         authRepository.logout();
     }
 
-    public void updateUserData(String uid, HashMap<String, Object> changes) {
-        authRepository.updateUser(uid, changes);
+    public void updateUserData(User user, HashMap<String, Object> changes) {
+        authRepository.updateUser(user.getUid(), changes);
+        userLiveData.setValue(user);
     }
 }

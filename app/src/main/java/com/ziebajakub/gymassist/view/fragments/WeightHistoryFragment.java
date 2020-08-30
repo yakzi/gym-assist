@@ -40,7 +40,7 @@ public class WeightHistoryFragment extends BaseFragment implements View.OnClickL
     public WeightHistoryFragment() {
     }
 
-    public static WeightHistoryFragment newInstance(User user) {
+    static WeightHistoryFragment newInstance(User user) {
         WeightHistoryFragment fragment = new WeightHistoryFragment();
         Bundle args = new Bundle();
         args.putSerializable(Constants.USER, user);
@@ -79,9 +79,8 @@ public class WeightHistoryFragment extends BaseFragment implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.weight_history_add_button:
-                openWeightDialog();
+        if (view.getId() == R.id.weight_history_add_button) {
+            openWeightDialog();
         }
     }
 
@@ -132,7 +131,7 @@ public class WeightHistoryFragment extends BaseFragment implements View.OnClickL
         binding.weightHistoryList.scrollToPosition(0);
         History newWeight = new History(Double.parseDouble(weight), Calendar.getInstance().getTimeInMillis());
         user.getWeights().add(newWeight);
-        authViewModel.updateUserData(user.getUid(), new HashMap<String, Object>() {{
+        authViewModel.updateUserData(user, new HashMap<String, Object>() {{
             put(Constants.DB_WEIGHTS, user.getWeights());
         }});
         adapter.add(newWeight);
