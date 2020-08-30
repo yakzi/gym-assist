@@ -32,9 +32,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         this.reps = reps;
         this.sets = sets;
         this.weights = weights;
-        Collections.reverse(this.reps);
-        Collections.reverse(this.sets);
-        Collections.reverse(this.weights);
     }
 
     @NonNull
@@ -56,17 +53,17 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.HistoryH
         holder.binding.historyItemWeight.setText(weight.getValue() > 0 ? weight.getValue() + "" : "-");
     }
 
-    @SuppressLint("SimpleDateFormat")
-    private String getTimeFromMillis(long millis) {
-        Calendar date = Calendar.getInstance();
-        date.setTimeInMillis(millis);
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY");
-        return format.format(date.getTime());
-    }
-
     @Override
     public int getItemCount() {
         return reps.size();
+    }
+
+    public void add(History rep, History set, History weight) {
+        weights.add(0, weight);
+        reps.add(0, rep);
+        sets.add(0, set);
+        notifyItemInserted(0);
+        notifyItemRangeChanged(0, weights.size());
     }
 
     static class HistoryHolder extends RecyclerView.ViewHolder {
