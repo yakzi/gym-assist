@@ -32,10 +32,6 @@ public class ExerciseViewModel extends AndroidViewModel {
         return exercisesLiveData;
     }
 
-    public String generateId() {
-        return exerciseRepository.generateId();
-    }
-
     public void addExercise(Exercise exercise) {
         exerciseLiveData = exerciseRepository.addExercise(exercise);
     }

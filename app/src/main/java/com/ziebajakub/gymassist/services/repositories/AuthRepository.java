@@ -1,6 +1,5 @@
 package com.ziebajakub.gymassist.services.repositories;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.AuthCredential;
@@ -65,7 +64,7 @@ public class AuthRepository {
         userRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot documentSnapshot = task.getResult();
-                if (documentSnapshot!= null && documentSnapshot.exists()) {
+                if (documentSnapshot != null && documentSnapshot.exists()) {
                     User user = documentSnapshot.toObject(User.class);
                     userMutableLiveData.setValue(user);
                 } else {

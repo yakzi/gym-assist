@@ -39,14 +39,6 @@ public class Workout implements Serializable, Comparable<Workout> {
         return exercises;
     }
 
-    public void addExerciseId(String id) {
-        this.exercises.add(id);
-    }
-
-    public void addExerciseData(Exercise e) {
-        this.exercisesData.add(e);
-    }
-
     @Exclude
     public void addExercisesData(List<Exercise> exercises) {
         this.exercisesData = exercises;

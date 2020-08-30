@@ -14,7 +14,7 @@ public class User implements Serializable {
     private List<History> weights;
     private List<String> workouts;
     @Exclude
-    private boolean isNew, isCreated;
+    private boolean isNew;
 
     public User() {
     }
@@ -31,10 +31,6 @@ public class User implements Serializable {
         return uid;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
-    }
-
     public String getName() {
         return name;
     }
@@ -47,10 +43,6 @@ public class User implements Serializable {
         return email;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     @Exclude
     public boolean isNew() {
         return isNew;
@@ -58,15 +50,6 @@ public class User implements Serializable {
 
     public void setNew(boolean aNew) {
         isNew = aNew;
-    }
-
-    @Exclude
-    public boolean isCreated() {
-        return isCreated;
-    }
-
-    public void setCreated(boolean created) {
-        isCreated = created;
     }
 
     public List<History> getWeights() {
