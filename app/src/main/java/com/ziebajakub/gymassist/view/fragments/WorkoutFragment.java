@@ -44,7 +44,8 @@ public class WorkoutFragment extends BaseFragment implements View.OnClickListene
     private ExerciseViewModel exerciseViewModel;
     private List<Workout> workoutList;
     private Workout currentWorkout;
-    private ExerciseAdapter adapter;
+    @SuppressLint("StaticFieldLeak")
+    static ExerciseAdapter adapter;
 
     public WorkoutFragment() {
     }
@@ -162,7 +163,7 @@ public class WorkoutFragment extends BaseFragment implements View.OnClickListene
         return new Exercise(id, name, repH, setH, weightH);
     }
 
-    private boolean validateInput(TextInputEditText input, boolean notZero) {
+    static boolean validateInput(TextInputEditText input, boolean notZero) {
         boolean textVal = input.getText() != null && !input.getText().toString().trim().isEmpty();
         boolean numberVal = !notZero || input.getText() != null && Double.parseDouble(input.getText().toString()) > 0;
         return textVal && numberVal;

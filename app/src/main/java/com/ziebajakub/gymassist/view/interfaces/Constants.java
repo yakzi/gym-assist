@@ -6,11 +6,12 @@ public interface Constants {
     String USER = "user";
     String USERS = "users";
     String DB_WEIGHTS = "weights";
+    String DB_REPS = "reps";
+    String DB_SETS = "sets";
     String DB_WORKOUTS = "workouts";
     String DB_EXERCISES = "exercises";
     String WORKOUTS = "workouts";
     String WORKOUT = "workout";
-    String EXERCISES = "exercises";
     String EXERCISE = "exercise";
 
     int MAX_WEIGHT_LENGTH = 5;
