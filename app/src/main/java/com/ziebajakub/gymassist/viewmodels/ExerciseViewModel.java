@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import com.ziebajakub.gymassist.services.models.Exercise;
 import com.ziebajakub.gymassist.services.repositories.ExerciseRepository;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class ExerciseViewModel extends AndroidViewModel {
@@ -49,5 +50,9 @@ public class ExerciseViewModel extends AndroidViewModel {
 
     public void removeExercise(String id) {
         exerciseRepository.removeExercise(id);
+    }
+
+    public void updateExercise(String id, HashMap<String, Object> changes) {
+        exerciseRepository.updateExercise(id, changes);
     }
 }

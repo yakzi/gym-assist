@@ -12,6 +12,7 @@ import com.ziebajakub.gymassist.services.models.Exercise;
 import com.ziebajakub.gymassist.view.interfaces.Constants;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class ExerciseRepository {
@@ -72,5 +73,9 @@ public class ExerciseRepository {
 
     public void removeExercise(String id) {
         exercisesRef.document(id).delete();
+    }
+
+    public void updateExercise(String id, HashMap<String, Object> changes) {
+        exercisesRef.document(id).update(changes);
     }
 }
