@@ -43,7 +43,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/delete"
+            android:text="@string/delete_exercise"
             android:theme="@style/TextButtonDelete"
             tools:ignore="ButtonStyle" />
 
@@ -52,7 +52,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/add"
+            android:text="@string/add_progress"
             android:theme="@style/TextButton"
             tools:ignore="ButtonStyle" />
 
