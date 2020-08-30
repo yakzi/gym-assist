@@ -1,5 +1,7 @@
 package com.ziebajakub.gymassist.services.models;
 
+import com.google.firebase.firestore.Exclude;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,15 +49,18 @@ public class Exercise implements Serializable {
         return weights;
     }
 
+    @Exclude
     public History getNewestRep() {
-        return reps.size() > 0 ? reps.get(reps.size() - 1) : null;
+        return reps.size() > 0 ? reps.get(0) : null;
     }
 
+    @Exclude
     public History getNewestSet() {
-        return sets.size() > 0 ? sets.get(sets.size() - 1) : null;
+        return sets.size() > 0 ? sets.get(0) : null;
     }
 
+    @Exclude
     public History getNewestWeight() {
-        return weights.size() > 0 ? weights.get(weights.size() - 1) : null;
+        return weights.size() > 0 ? weights.get(0) : null;
     }
 }
