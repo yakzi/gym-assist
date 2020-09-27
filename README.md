@@ -25,7 +25,7 @@ It allows user to create workout routine, and what is most important add and mon
 
 ## Screenshots
 <p align="center">
- Coming Soon
+ <img src="./Screenshots/gymassist.jpg" alt="Screenshot form GymAssist application"/>
 </p>
 
 ## Technologies
